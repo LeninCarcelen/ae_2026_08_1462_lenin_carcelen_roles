@@ -1,0 +1,125 @@
+{
+  "info": {
+    "name": "events - PUCE Arquitectura Empresarial",
+    "description": "Colección para el microservicio events (público: catálogo de eventos, privado: Cognito Bearer Token)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8080" },
+    { "key": "access_token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "01 - Publico - GET listar eventos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/events", "host": ["{{base_url}}"], "path": ["api", "events"] }
+      }
+    },
+    {
+      "name": "02 - Publico - GET evento por id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/events/1", "host": ["{{base_url}}"], "path": ["api", "events", "1"] }
+      }
+    },
+    {
+      "name": "03 - Privado SIN token - POST crear evento (debe dar 401)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Festival Quito\",\n  \"venue\": \"Coliseo General Rumiñahui\",\n  \"totalTickets\": 100\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/events", "host": ["{{base_url}}"], "path": ["api", "events"] }
+      }
+    },
+    {
+      "name": "04 - Privado CON token - POST crear evento",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Festival Quito\",\n  \"venue\": \"Coliseo General Rumiñahui\",\n  \"totalTickets\": 100\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/events", "host": ["{{base_url}}"], "path": ["api", "events"] }
+      }
+    },
+    {
+      "name": "05 - Privado CON token - POST crear asistente",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Juan Perez\",\n  \"email\": \"juan@puce.edu.ec\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/attendees", "host": ["{{base_url}}"], "path": ["api", "attendees"] }
+      }
+    },
+    {
+      "name": "06 - Privado SIN token - POST reservar entrada (debe dar 401)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"attendeeId\": 1,\n  \"eventId\": 1\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/reservations", "host": ["{{base_url}}"], "path": ["api", "reservations"] }
+      }
+    },
+    {
+      "name": "07 - Privado CON token - POST reservar entrada",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}" }]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"attendeeId\": 1,\n  \"eventId\": 1\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/reservations", "host": ["{{base_url}}"], "path": ["api", "reservations"] }
+      }
+    },
+    {
+      "name": "08 - Privado CON token - GET listar reservas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}" }]
+        },
+        "url": { "raw": "{{base_url}}/api/reservations", "host": ["{{base_url}}"], "path": ["api", "reservations"] }
+      }
+    },
+    {
+      "name": "09 - Privado CON token - PUT cancelar reserva",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{access_token}}" }]
+        },
+        "url": { "raw": "{{base_url}}/api/reservations/1/cancel", "host": ["{{base_url}}"], "path": ["api", "reservations", "1", "cancel"] }
+      }
+    }
+  ]
+}
