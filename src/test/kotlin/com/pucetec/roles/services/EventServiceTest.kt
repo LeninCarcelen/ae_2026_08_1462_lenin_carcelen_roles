@@ -1,11 +1,11 @@
 package com.pucetec.roles.services
 
-import com.pucetec.events.dto.EventRequest
-import com.pucetec.events.entities.Event
-import com.pucetec.events.exceptions.BlankFieldException
-import com.pucetec.events.exceptions.EventNotFoundException
-import com.pucetec.events.exceptions.InvalidCapacityException
-import com.pucetec.events.repositories.EventRepository
+import com.pucetec.roles.dto.EventRequest
+import com.pucetec.roles.entities.Event
+import com.pucetec.roles.exceptions.BlankFieldException
+import com.pucetec.roles.exceptions.EventNotFoundException
+import com.pucetec.roles.exceptions.InvalidCapacityException
+import com.pucetec.roles.repositories.EventRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
