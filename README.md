@@ -70,3 +70,7 @@ Coverage**.
 - [ ] Verifica que las 5 capturas estén en `evidencias/`.
 - [ ] Verifica que `services` tenga 100% líneas / 100% ramas.
 - [ ] Pega el link del repositorio en la entrega.
+
+[editado por Copilot y yo]
+
+[editado por Copilot y yo]
